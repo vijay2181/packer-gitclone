@@ -83,4 +83,16 @@ policy for parameter store:-
 }
 
 
+
+procedure
+---------
+cd /home/ec2-user
+
+git clone https://github.com/vijay2181/packer-gitclone.git
+
+cd packer-gitclone
+
+packer validate instance.json
+
+packer build instance.json
   
