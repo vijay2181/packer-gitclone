@@ -9,6 +9,21 @@ procedure to checkout code from github while dynamic provisioning of ec2-instanc
 - this shell script will have logic to get git token from aws ssm parameter store and checkout the repository
 
 
+install packer
+---------------
+cd /opt
+
+sudo yum update -y
+
+sudo wget https://releases.hashicorp.com/packer/1.4.2/packer_1.4.2_linux_amd64.zip
+
+sudo unzip packer_1.4.2_linux_amd64.zip
+
+sudo mv packer /usr/local/bin/
+
+packer --version
+  
+  
   
 configure access and secrect keys
 ----------------------------------
