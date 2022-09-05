@@ -1,0 +1,62 @@
+{
+  "variables": {
+    "region":"us-west-2",
+    "ami-name": "VIJAY-PACKER",   
+    "instance-type": "t2.micro",
+    "ssh-username": "ec2-user",
+    "Profile": "test",
+    "description": "VIJAY-PACKER-AMI"
+  },
+
+    "builders": [
+      {
+        "type": "amazon-ebs",
+        "profile": "{{user `Profile`}}",
+        "region": "{{user `region`}}",
+        "source_ami_filter": {
+          "filters": {
+            "virtualization-type": "hvm",
+            "name": "amzn2-ami-kernel-5.10-hvm-2.0.*-x86_64-gp2"
+          },
+          "owners": ["amazon"],
+          "most_recent": true
+        },
+        "ami_name": "{{user `ami-name`}}",
+        "instance_type": "{{user `instance-type`}}",
+        "ssh_username": "{{user `ssh-username`}}",
+        "ami_description": "{{user `description`}}",
+        "launch_block_device_mappings": [{
+          "device_name": "/dev/xvda",
+          "volume_size": 8,
+          "delete_on_termination": true,
+          "volume_type": "gp3"
+        }],
+        "run_tags": {
+          "Name": "VIJAY-PACKER",
+          "purpose": "packer"
+        },
+        "run_volume_tags": {
+          "Name": "VIJAY-PACKER",
+          "purpose": "packer"
+        }
+    }
+    ],
+    "provisioners": [
+      {
+         "type": "file",
+         "source": "./remote-userdata.sh",
+         "destination": "/tmp/remote-userdata.sh"
+      },
+      
+     { 
+       "type": "shell",	     
+       "inline":  ["sudo mv /tmp/remote-userdata.sh /var/lib/cloud/scripts/per-instance/"]
+     },
+
+      {
+        "type": "shell",
+        "script": "./setup.sh",
+        "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'"
+      }
+    ]
+  }
