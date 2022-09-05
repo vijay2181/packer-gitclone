@@ -70,7 +70,7 @@ policy for parameter store:-
             
             "Resource": [
             
-                "arn:aws:ssm:us-west-2:<aws-account-id>:parameter/github/repo/*"
+                "arn:aws:ssm:us-west-2:987654321:parameter/github/repo/*"
                 
             ],
             
