@@ -29,7 +29,7 @@ region=
 
 - by using this profile, packer will authenticate to aws and create ami for you
 
-- goto parameter store and place the github token "/github/repo/token"   -- secure string
+- goto parameter store, create and place the github token "/github/repo/token"   -- secure string
 
 - create a role with the below policy and attach to ec2-instance to get required parameters(git token) from parameter store
 
