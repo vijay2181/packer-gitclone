@@ -30,25 +30,42 @@ region=
 - by using this profile, packer will authenticate to aws and create ami for you
 
 - goto parameter store and place the github token "/github/repo/token"   -- secure string
-create a role with the below policy and attach to ec2-instance to get required parameters(git token) from parameter store
+
+- create a role with the below policy and attach to ec2-instance to get required parameters(git token) from parameter store
 
 - the provisioned instance where this shell script will act as userdata need to have permission to get paramter from parameter store and decrypt it, so we can have a role for ec2-instance like below example policy
 
 policy for parameter store:-
 ---------------------------
 
+
 {
+
     "Version": "2012-10-17",
+    
     "Statement": [
+    
         {
+        
             "Action": [
+            
                 "ssm:GetParameter"
+                
             ],
+            
             "Resource": [
+            
                 "arn:aws:ssm:us-west-2:<aws-account-id>:parameter/github/repo/*"
+                
             ],
+            
             "Effect": "Allow"
+            
         }
+        
     ]
+    
 }
+
+
   
