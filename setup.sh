@@ -43,3 +43,4 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 #install sqlite3
 sudo amazon-linux-extras install epel -y
 sudo yum install sqlite -y
+#sqlite3 --version
