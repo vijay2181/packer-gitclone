@@ -5,6 +5,7 @@ GIT_TOKEN=$(aws ssm get-parameter --name /github/repo/token --with-decryption --
 
 bash /home/ec2-user/data/master.sh
 
+#Supplied Tags along with AMI id, security group id, iam role etc while creating ec2 instance
 #we can read tags in user data when provisioning dynamic ec2 instance
 InstanceId=$(wget -qO- http://instance-data/latest/meta-data/instance-id)
 Region=$(wget -qO- http://instance-data/latest/meta-data/placement/region)
